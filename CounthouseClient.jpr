@@ -70,6 +70,11 @@
       <string v="oracle.toplink.workbench.addin/toplinkContentSet"/>
    </list>
    <value n="defaultPackage" v="counthouseclient"/>
+   <hash n="oracle.ide.model.TechnologyScopeConfiguration">
+      <list n="technologyScope">
+         <string v="Java"/>
+      </list>
+   </hash>
    <hash n="oracle.jdeveloper.compiler.OjcConfiguration">
       <value n="webIANAEncoding" v="UTF-8"/>
    </hash>
@@ -86,6 +91,20 @@
             <url path="."/>
          </list>
       </hash>
+   </hash>
+   <hash n="oracle.jdeveloper.runner.RunConfigurations">
+      <hash n="runConfigurationDefinitions">
+         <hash n="ClientRun">
+            <value n="custom" v="false"/>
+            <value n="name" v="ClientRun"/>
+            <url n="runDirectoryURL" path="."/>
+            <url n="targetURL" path="com/client/CounthouseClient.java"/>
+         </hash>
+      </hash>
+      <list n="runConfigurationList">
+         <string v="ClientRun"/>
+         <string v="Default"/>
+      </list>
    </hash>
    <hash n="oracle.jdevimpl.config.JProjectPaths">
       <url n="outputDirectory" path="classes/"/>

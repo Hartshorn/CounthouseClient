@@ -1,5 +1,9 @@
 package com.util;
 
+import com.server.Code;
+
+import com.server.CounthouseServer;
+
 import java.net.URL;
 
 import javax.xml.namespace.QName;
@@ -50,6 +54,7 @@ public class CounthouseClientUtil {
         // the user will have to be prompted for these values!
         // all fields would need to be set - do an update with a read always
         request.setRequestCode(Code.UPDATE);
+        request.setId(id);
         request.setCity("Omaha");
         request.setState("NE");
         
