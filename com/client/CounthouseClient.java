@@ -5,64 +5,27 @@ import com.server.Code;
 import com.server.Response;
 import com.server.CounthouseServer;
 
+import com.util.CounthouseClientUtil;
+
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import java.net.URL;
 
 
 public class CounthouseClient {
-
-  private static final String SERVICE_URL   = "http://localhost:8080/counthouse?wsdl";
-  private static final String NAMESPACE_URI = "http://server.com/";
-  private static final String LOCAL_PART    = "CounthouseServerImplService";
+    
+    private static CounthinghouseClientUtil util = new CounthouseClientUtil();
 
   public static void main(String ... args) {
 
-    CounthouseServer service = setupService();
+    CounthouseServer service = util.setupService();
 
-    Request request = new Request();
-
-    request.setRequestCode(Code.CREATE);
-    request.setName("Jacks Tavern");
-    request.setCity("Chicago");
-    request.setState("Illinois");
-
-    Response response1 = service.process(request);
-
-    request.setRequestCode(Code.DELETE);
-    request.setId(25);
-
-    Response response2 = service.process(request);
-
-    request.setRequestCode(Code.READ);
-    request.setId(89);
-
-    Response response3 = service.process(request);
-
-    request.setRequestCode(Code.UPDATE);
-    // all fields would need to be set - do an update with a read always
-    request.setCity("Omaha");
-    request.setState("NE");
-
-    Response response4 = service.process(request);
-
-    request.setRequestCode(Code.DISPLAY);
-    Response response5 = service.process(request);
+    Response response1 = service.process(util.createNewDataItem());
+    Response response2 = service.process(util.createNewDeleteItemRequest(25));
+    Response response3 = service.process(util.createNewReadRequest(89));
+    Response response4 = service.process(util.createNewUpdateRequest(89));
+    Response response5 = service.process(util.createNewDisplayAllRequest());
   }
 
-  private static CounthouseServer setupService() {
 
-    try {
-
-      return Service.create(new URL(SERVICE_URL),
-                            new QName(NAMESPACE_URI,
-                                      LOCAL_PART))
-                    .getPort(CounthouseServer.class);
-
-
-    } catch (Exception e) {
-      System.out.println(e.toString());
-      return null;
-    }
-  }
 }
